@@ -40,7 +40,7 @@ function Board (cellWidth, cellHeight, cellsX, cellsY) {
         }
         this.drawCell = function (canvasContext) {
             /**just for now
-             * TODO: place corect method */
+             * TODO: place correct method */
             canvasContext.strokeStyle = "green";
             canvasContext.strokeRect(positionX*cellWidth,positionY*cellHeight,cellHeight,cellWidth);
             canvasContext.fillStyle = "blue";
