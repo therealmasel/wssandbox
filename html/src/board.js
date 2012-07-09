@@ -21,6 +21,7 @@ function Board (cellWidth, cellHeight, cellsX, cellsY) {
     }
 
     this.drawBoard = function (canvasContext) {
+        canvasContext.clearRect(0, 0, 5 + (cellsX * cellWidth), 5 + (cellsY * cellHeight));
         for (var i = 0; i < cellsX; i ++) {
             for (var j = 0; j < cellsY; j ++) {
                 this.cells[i*cellsX + j].drawCell(canvasContext);
@@ -33,6 +34,10 @@ function Board (cellWidth, cellHeight, cellsX, cellsY) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.cellType = cellType;
+
+        this.getCellType = function () {
+            return this.cellType;
+        }
         this.drawCell = function (canvasContext) {
             /**just for now
              * TODO: place corect method */
@@ -40,7 +45,7 @@ function Board (cellWidth, cellHeight, cellsX, cellsY) {
             canvasContext.strokeRect(positionX*cellWidth,positionY*cellHeight,cellHeight,cellWidth);
             canvasContext.fillStyle = "blue";
             canvasContext.font="12px Arial";
-            canvasContext.fillText(cellType.toString(), positionX*cellWidth, positionY*cellHeight+cellHeight);
+            canvasContext.fillText(this.getCellType(), positionX*cellWidth, positionY*cellHeight+cellHeight);
             canvasContext.stroke();
         }
     }
