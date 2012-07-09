@@ -5,7 +5,6 @@
  * Time: 11:57 AM
  * To change this template use File | Settings | File Templates.
  */
-
 function Board (cellWidth, cellHeight, cellsX, cellsY) {
     this.cellWidth = cellWidth;
     this.cellHeight = cellHeight;
@@ -35,15 +34,13 @@ function Board (cellWidth, cellHeight, cellsX, cellsY) {
         this.positionY = positionY;
         this.cellType = cellType;
         this.drawCell = function (canvasContext) {
+            /**just for now
+             * TODO: place corect method */
             canvasContext.strokeStyle = "green";
             canvasContext.strokeRect(positionX*cellWidth,positionY*cellHeight,cellHeight,cellWidth);
-            canvasContext.fillStyle = "yellow";
+            canvasContext.fillStyle = "blue";
             canvasContext.font="12px Arial";
-            canvasContext.fillText(cellType, positionX*cellWidth, positionY*cellHeight);
-
-
-            //canvasContext.fillRect(200,50,100,100);
-            //canvasContext.rect(350,50,100,100);
+            canvasContext.fillText(cellType.toString(), positionX*cellWidth, positionY*cellHeight+cellHeight);
             canvasContext.stroke();
         }
     }

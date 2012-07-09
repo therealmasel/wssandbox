@@ -1,20 +1,22 @@
 var canvasElement;
+var canvasContext;
 var board;
+var boardWidth = 10;
+var boardHeight = 10;
+var cellWidth = 50;
+var cellHeight = 50;
 
 function initialize() {
     canvasElement = document.createElement("canvas");
     canvasElement.id = "sam_canvas";
     document.body.appendChild(canvasElement);
-    var boardWidth = 10;
-    var boardHeight = 10;
-    var cellWidth = 50;
-    var cellHeight = 50;
+
     var canvasWidth = 5 + (boardWidth * cellWidth);
     var canvasHeight= 5 + (boardHeight * cellHeight);
     canvasElement.width = canvasWidth;
     canvasElement.height = canvasHeight;
 
-    gCanvas = canvasElement.getContext("2d");
+    canvasContext = canvasElement.getContext("2d");
     board = new Board(
         cellWidth,
         cellHeight,
@@ -22,18 +24,29 @@ function initialize() {
         boardHeight
     );
     board.generateCells();
-    board.drawBoard(gCanvas);
-
-    //cell = new Cell()
-    //cell = new Cell (10,10, 11);
-    //cell.drawCell(gCanvas);
-    /*
-    gCanvas.strokeStyle = "green";
-    gCanvas.fillStyle = "green";
-    gCanvas.strokeRect(50,50,100,100);
-    gCanvas.fillRect(200,50,100,100);
-    gCanvas.rect(350,50,100,100);
-    gCanvas.stroke();
-    */
+    board.drawBoard(canvasContext);
+    canvasElement.addEventListener("click", onClick, false);
 
 }
+
+    function getMousePosition(e) {
+
+        var x;
+        var y;
+        if (e.pageX != undefined && e.pageY != undefined) {
+            x = e.pageX;
+            y = e.pageY;
+        }
+        x -= canvasElement.offsetLeft;
+        y -= canvasElement.offsetTop;
+        cellIndex = Math.floor(x/cellWidth)*boardWidth + Math.floor(y/cellHeight);
+
+
+
+        return cellIndex;
+    }
+
+    function onClick(e) {
+        var cellIndex = getMousePosition(e);
+        alert(cellIndex)
+    }
