@@ -36,6 +36,7 @@ function WebSocketTest()
         alert("WebSocket is supported by your Browser!");
         ws = new WebSocket("ws://localhost:8081/");
         ws.binaryType = "arraybuffer";
+
         ws.onopen = function()
         {
             var arrbuff = [10, 20, 30, 40];
